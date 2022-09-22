@@ -1,4 +1,4 @@
-package SEMANA_03;
+package TAREA_03;
 import java.util.Scanner;
 
 public class Enunciado01 {

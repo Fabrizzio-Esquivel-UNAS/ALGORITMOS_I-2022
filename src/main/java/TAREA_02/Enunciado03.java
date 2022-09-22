@@ -1,4 +1,4 @@
-package SEMANA_02;
+package TAREA_02;
 
 import java.util.Random;
 
