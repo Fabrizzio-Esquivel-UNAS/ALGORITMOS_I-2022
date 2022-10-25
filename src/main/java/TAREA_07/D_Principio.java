@@ -1,5 +1,4 @@
 package TAREA_07;
-
 /**
  * 5° Princpio de Inversión de Dependencias
  * Los modulos tanto de alto como de bajo nivel deben depender de interfaces 
@@ -10,7 +9,14 @@ package TAREA_07;
  * entonces Elemento debe ser una interface la cual implementen los demás tipos
  * de Elementos en forma de clases.
  */
-
+public class D_Principio {
+    static public void main(String[] args){
+        Pokemon charmander = new Pokemon(new Fuego());
+        Pokemon squirtle = new Pokemon(new Agua());
+        charmander.debilidad();
+        squirtle.debilidad();
+    }
+}
 interface Elemento{
     void debilidad();
 }
@@ -33,14 +39,5 @@ class Pokemon{
     }
     public void debilidad(){
         tipo.debilidad();
-    }
-}
-
-public class D_Principio {
-    static public void main(String[] args){
-        Pokemon charmander = new Pokemon(new Fuego());
-        Pokemon squirtle = new Pokemon(new Agua());
-        charmander.debilidad();
-        squirtle.debilidad();
     }
 }

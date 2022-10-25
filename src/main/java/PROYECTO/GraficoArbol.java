@@ -34,7 +34,7 @@ public class GraficoArbol extends JPanel{
             this.origen = origen;
             this.destino = destino;
             this.peso = peso;
-            super.color = Color.BLACK;
+            super.color = Color.WHITE;
         }
         public int getPeso() {
             return peso;
@@ -59,24 +59,35 @@ public class GraficoArbol extends JPanel{
         super.paintComponent(g);
         //Dibujar aristas
         for (Arista a : aristas){
-            g2d.setStroke(new BasicStroke(4));
+            //Dibujar linea>
+            g2d.setStroke(new BasicStroke(8));
             g.setColor(a.getColor());
-            g.drawLine(
-                    vertices.get(a.origen).x + vertices.get(a.origen).w/2,
-                    vertices.get(a.origen).y + vertices.get(a.origen).h/2,
-                    vertices.get(a.destino).x + vertices.get(a.destino).w/2,
-                    vertices.get(a.destino).y + vertices.get(a.destino).h/2                    
-            );
+            Vertice aOrigen = vertices.get(a.origen);
+            Vertice aDestino = vertices.get(a.destino);
+            int x1 = aOrigen.x + aOrigen.w/2;
+            int y1 = aOrigen.y + aOrigen.h/2;
+            int x2 = aDestino.x + aDestino.w/2;
+            int y2 = aDestino.y + aDestino.h/2;
+            g.drawLine(x1,y1,x2,y2);
+            //Dibujar peso
+            g.setColor(Color.BLACK);
+            g.setFont(new Font("TimesRoman", Font.BOLD, 16));
+            g.drawString(Integer.toString(a.peso), (x1+x2-8)/2, (y1+y2+10)/2);
         }
         //Dibujar vertices
+        int i=0;
         for (Vertice v : vertices){
             //Dibujar borde
-            g.setColor(Color.BLACK);
-            g2d.setStroke(new BasicStroke(4));
+            g.setColor(Color.WHITE);
+            g2d.setStroke(new BasicStroke(8));
             g.drawOval(v.x, v.y, v.w, v.h);
             //Dibujar relleno
             g.setColor(v.getColor());
             g2d.fillOval(v.x, v.y, v.w, v.h);
+            //Dibujar letra
+            g.setColor(Color.WHITE);
+            g.setFont(new Font("TimesRoman", Font.BOLD, 16));
+            g.drawChars(Character.toChars(65+i++), 0, 1, v.x-6+(v.w/2), v.y+6+(v.h/2));
         }        
     }
 }

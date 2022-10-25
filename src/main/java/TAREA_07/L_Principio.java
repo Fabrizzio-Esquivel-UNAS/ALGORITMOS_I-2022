@@ -1,5 +1,4 @@
 package TAREA_07;
-
 /**
  * 3° Principio de Sustitución de Liskov:
  * Toda superclase debe ser capaz de reemplazarse con sus subclases, sin
@@ -10,6 +9,12 @@ package TAREA_07;
  * reemplazar la superclase Pokemon con la subclase Pikachu y el programa aún 
  * deberia poder funcionar.
  */
+public class L_Principio {
+    static public void main(String[] args){
+        Pokemon pokemon1 = new Pokemon();
+        pokemon1.atacar();
+    }
+}
 class Pikachu{
     public void atacar(){
         System.out.println("Pikachu ataca!");
@@ -20,11 +25,4 @@ class Pokemon extends Pikachu{
     public void atacar(){
         System.out.println("Un pokemon ataca!");
     };
-}
-
-public class L_Principio {
-    static public void main(String[] args){
-        Pokemon pokemon1 = new Pokemon();
-        pokemon1.atacar();
-    }
 }

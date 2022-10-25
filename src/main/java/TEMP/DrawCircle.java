@@ -1,4 +1,4 @@
-package PROYECTO;
+package TEMP;
 import javax.swing.*;
 import java.awt.*;
 
