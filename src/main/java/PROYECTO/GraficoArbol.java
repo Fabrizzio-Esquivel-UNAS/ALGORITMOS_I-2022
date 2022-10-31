@@ -7,26 +7,19 @@ public class GraficoArbol extends JPanel{
     GraficoArbol(){
         setPreferredSize(new Dimension(420,420));
     }
-    private static class Grafico{
-        private Color color;
-        public Color getColor() {
-            return color;
-        }
-        public void setColor(Color color) {
-            this.color = color;
-        }
-    }
-    static class Vertice extends Grafico{
+    static class Vertice{
+        Color color;
         final int x,y,w,h;
         public Vertice(int x, int y) {
             this.x = x;
             this.y = y;
             this.w = 50;
             this.h = 50;
-            super.color = Color.BLUE;
+            this.color = Color.BLUE;
         }
     }
-    static class Arista extends Grafico{
+    static class Arista{
+        Color color;
         final int origen;
         final int destino;
         private int peso;
@@ -34,7 +27,7 @@ public class GraficoArbol extends JPanel{
             this.origen = origen;
             this.destino = destino;
             this.peso = peso;
-            super.color = Color.WHITE;
+            this.color = Color.WHITE;
         }
         public int getPeso() {
             return peso;
@@ -61,7 +54,7 @@ public class GraficoArbol extends JPanel{
         for (Arista a : aristas){
             //Dibujar linea>
             g2d.setStroke(new BasicStroke(8));
-            g.setColor(a.getColor());
+            g.setColor(a.color);
             Vertice aOrigen = vertices.get(a.origen);
             Vertice aDestino = vertices.get(a.destino);
             int x1 = aOrigen.x + aOrigen.w/2;
@@ -82,7 +75,7 @@ public class GraficoArbol extends JPanel{
             g2d.setStroke(new BasicStroke(8));
             g.drawOval(v.x, v.y, v.w, v.h);
             //Dibujar relleno
-            g.setColor(v.getColor());
+            g.setColor(v.color);
             g2d.fillOval(v.x, v.y, v.w, v.h);
             //Dibujar letra
             g.setColor(Color.WHITE);

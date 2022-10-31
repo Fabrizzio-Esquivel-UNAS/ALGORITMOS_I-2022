@@ -1,8 +1,7 @@
 package PROYECTO;
 import java.util.Arrays;
 
-public class Kruskal {
-    GraficoArbol grafico;
+public class Kruskal extends Algoritmo{
     // A class to represent a graph edge
     class Edge implements Comparable<Edge> {
         int src, dest, weight;
@@ -20,7 +19,8 @@ public class Kruskal {
     Edge edge[]; // collection of all edges
 
     // Creates a graph with V vertices and E edges
-    Kruskal(GraficoArbol grafico){
+    Kruskal(){
+        super();
         V = grafico.vertices.size();
         E = grafico.aristas.size();
         edge = new Edge[E];
