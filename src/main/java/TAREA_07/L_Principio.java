@@ -10,19 +10,19 @@ package TAREA_07;
  * deberia poder funcionar.
  */
 public class L_Principio {
+    static class Pikachu{
+        public void atacar(){
+            System.out.println("Pikachu ataca!");
+        };
+    }
+    static class Pokemon extends Pikachu{
+        @Override
+        public void atacar(){
+            System.out.println("Un pokemon ataca!");
+        };
+    }
     static public void main(String[] args){
         Pokemon pokemon1 = new Pokemon();
         pokemon1.atacar();
     }
-}
-class Pikachu{
-    public void atacar(){
-        System.out.println("Pikachu ataca!");
-    };
-}
-class Pokemon extends Pikachu{
-    @Override
-    public void atacar(){
-        System.out.println("Un pokemon ataca!");
-    };
 }

@@ -1,9 +1,39 @@
 package PROYECTO;
 import java.util.Arrays;
+import java.util.stream.Stream;
+import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.Level;
+import org.openjdk.jmh.annotations.Param;
+import org.openjdk.jmh.annotations.Scope;
+import org.openjdk.jmh.annotations.Setup;
+import org.openjdk.jmh.annotations.State;
 
-public class Kruskal extends Algoritmo{
+@State(Scope.Benchmark)
+public class Kruskal{    
+    @Param("")
+    String p;
+    @Setup(Level.Invocation)
+    public void Setup(){
+        V = E = 0;
+        Stream<String> plines = p.lines();
+        plines.forEach(l -> {
+            String a[] = l.split(",");            
+            if (V==0){
+                V = Integer.parseInt(a[0]);
+                edge = new Edge[Integer.parseInt(a[1])];
+            }else{
+                Edge e = new Edge();
+                e.dest = Integer.parseInt(a[0]);
+                e.src = Integer.parseInt(a[1]);
+                e.weight = Integer.parseInt(a[2]);
+                edge[E] = e;
+                E++;
+            }
+        });        
+    }    
+
     // A class to represent a graph edge
-    class Edge implements Comparable<Edge> {
+    public class Edge implements Comparable<Edge> {
         int src, dest, weight;
         // Comparator function used for sorting edgesbased on their weight
         @Override
@@ -11,28 +41,14 @@ public class Kruskal extends Algoritmo{
             return this.weight - compareEdge.weight;
         }
     };
+
     // A class to represent a subset for union-find
     class subset {
         int parent, rank;
     };
+    
     int V, E; // V-> no. of vertices & E->no.of edges
-    Edge edge[]; // collection of all edges
-
-    // Creates a graph with V vertices and E edges
-    Kruskal(){
-        super();
-        V = grafico.vertices.size();
-        E = grafico.aristas.size();
-        edge = new Edge[E];
-        for (int i = 0; i < E; ++i){
-            Edge e = new Edge();
-            e.dest = grafico.aristas.get(i).origen;
-            e.src = grafico.aristas.get(i).destino;
-            e.weight = grafico.aristas.get(i).getPeso();
-            edge[i] = e;
-        }
-        this.grafico = grafico;
-    }
+    Edge edge[]; // collection of all edges    
 
     // A utility function to find set of an element i (uses path compression technique)
     int find(subset subsets[], int i){
@@ -42,6 +58,7 @@ public class Kruskal extends Algoritmo{
             subsets[i].parent = find(subsets, subsets[i].parent);
         return subsets[i].parent;
     }
+
     // A function that does union of two sets of x and y (uses union by rank)
     void Union(subset subsets[], int x, int y){
             int xroot = find(subsets, x);
@@ -62,7 +79,8 @@ public class Kruskal extends Algoritmo{
     }
 
     // The main function to construct MST using Kruskal's algorithm
-    void KruskalMST(){
+    @Benchmark
+    public Edge[] MST(){
         Edge result[] = new Edge[V]; // This will store the resultant MST
         int e = 0; // An index variable, used for result[]
         int i; // An index variable, used for sorted edges
@@ -101,24 +119,14 @@ public class Kruskal extends Algoritmo{
                 // include it in result and increment the index
                 // of result for next edge
                 if (x != y) {
+                        //grafico.aristas[i].color = Color.RED;
+                        //grafico.vertices[grafico.aristas[i].origen].color = Color.LIGHT_GRAY;
                         result[e++] = next_edge;
                         Union(subsets, x, y);
                 }
                 // Else discard the next_edge
         }
-
-        // print the contents of result[] to display the built MST
-        System.out.println("Following are the edges in "
-                                        + "the constructed MST");
-        int minimumCost = 0;
-        for (i = 0; i < e; ++i) {
-                System.out.println(result[i].src + " -- "
-                                                + result[i].dest
-                                                + " == " + result[i].weight);
-                minimumCost += result[i].weight;
-        }
-        System.out.println("Minimum Cost Spanning Tree "
-                                        + minimumCost);
+        return result;
     }
 }
 // This code is contributed by Aakash Hasija

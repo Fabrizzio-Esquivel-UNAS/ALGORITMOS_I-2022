@@ -9,29 +9,28 @@ package TAREA_07;
  * pokemon, se debe poder hacer sin alterar a la clase de otros pokemones.
  */
 public class O_Principio {
+    static class Pokemon{
+        public void atacar(){
+            System.out.println("Un pokemon ataca!");
+        };
+    }
+    static class Pikachu extends Pokemon{
+        @Override
+        public void atacar(){
+            System.out.println("Pikachu ataca!");
+        };
+    }
+    //Nuevo pokemon: Sprigatito
+    static class Sprigatito extends Pokemon{
+        @Override
+        public void atacar(){
+            System.out.println("Sprigatito ataca!");
+        };
+    }
     static public void main(String[] args){
         Pikachu pokemon1 = new Pikachu();
         Sprigatito pokemon2 = new Sprigatito();
         pokemon1.atacar();
         pokemon2.atacar();
     }
-}
-
-class Pokemon{
-    public void atacar(){
-        System.out.println("Un pokemon ataca!");
-    };
-}
-class Pikachu extends Pokemon{
-    @Override
-    public void atacar(){
-        System.out.println("Pikachu ataca!");
-    };
-}
-//Nuevo pokemon: Sprigatito
-class Sprigatito extends Pokemon{
-    @Override
-    public void atacar(){
-        System.out.println("Sprigatito ataca!");
-    };
 }

@@ -1,0 +1,2 @@
+JMH S 16 PROYECTO.Kruskal S 42 PROYECTO.jmh_generated.Kruskal_MST_jmhTest S 3 MST S 10 Throughput E A 1 1 1 E E E E E E E E E E E E E M 1 1 p 1 0  E E E 
+JMH S 13 PROYECTO.Prim S 39 PROYECTO.jmh_generated.Prim_MST_jmhTest S 3 MST S 10 Throughput E A 1 1 1 E E E E E E E E E E E E E M 1 1 p 1 0  E E E 
